@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
   
   #管理側ルーティング
-  namespace :admin do
+  namespace :admins do
     root to: 'homes#top'
     resources :genres,    only: [:index, :create, :edit, :update]
     resources :posts,     only: [:index, :show, :edit, :update]
