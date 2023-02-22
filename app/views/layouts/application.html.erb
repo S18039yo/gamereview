@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <!-- FontAwesome導入 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/4df3a0236e.js" crossorigin="anonymous"></script>
 
     <!-- ↓Bootstrap導入前 -->
     <!-- %= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' % -->
@@ -15,14 +15,10 @@
   </head>
 
   <body>
-    <header>
-      
-    </header>
+    <%= render 'layouts/header' %>
     <main>
       <%= yield %>
     </main>
-    <footer>
-      
-    </footer>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

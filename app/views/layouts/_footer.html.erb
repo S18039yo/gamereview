@@ -1,0 +1,18 @@
+<div class="container-fluid border-top bg-white mt-auto">
+  <!-- SNSのリンク(仮) -->
+  <div class="text-center mt-2 h4">
+    <%= link_to "#", class: "sns-link text-primary" do %><i class="fa-brands fa-facebook mx-1"></i><% end %>
+    <%= link_to "#", class: "sns-link text-primary" do %><i class="fa-brands fa-twitter mx-1"></i><% end %>
+    <%= link_to "#", class: "sns-link text-primary" do %><i class="fa-brands fa-instagram mx-1"></i><% end %>
+    <%= link_to "#", class: "sns-link text-success" do %><i class="fa-brands fa-line mx-1"></i><% end %>
+  </div>
+  <!-- 管理者ログインページへ -->
+  <p class="text-center">
+    <%= link_to admin_session_path do %>
+      <i class="fa-solid fa-lock">管理者ログイン</i>
+    <% end %>
+  </p>
+  <!-- コピーライト等の記述 -->
+  <p class="text-center">
+  </p>
+</div>
