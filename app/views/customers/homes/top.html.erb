@@ -1,1 +1,21 @@
-<h1>Topページ</h1>
+<div class="container">
+  <div class="row">
+　  <div class="mx-auto my-4">
+	    <h2>Game Valueへようこそ！</h2>
+	  </div>
+  </div>
+  
+  <div class="row">
+    <!-- div class="row" -->
+      <!-- %= link_to "ゲストログイン", , class: "btn btn-success" % -->
+    <!-- /div -->
+    
+    <div class="col-7 mx-auto mb-3">
+      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-dark btn-lg btn-block" %>
+    </div>
+    
+    <div class="col-7 mx-auto mb-3">
+      <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-dark btn-lg btn-block" %>
+    </div>
+  </div>
+</div>
