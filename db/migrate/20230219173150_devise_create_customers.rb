@@ -9,14 +9,14 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       
       ## テーブル定義書追加分
       # 氏名
-      t.string  :last_name,       null: false
-      t.string  :first_name,      null: false
-      t.string  :last_name_kana,  null: false
-      t.string  :first_name_kana, null: false
+      t.string  :last_name
+      t.string  :first_name
+      t.string  :last_name_kana
+      t.string  :first_name_kana
       # ユーザーネーム
-      t.string  :user_name,       null: false
+      t.string  :user_name
       #退会処理(デフォルト値：false)
-      t.boolean :is_deleted,      null: false, default: false
+      t.boolean :is_deleted, default: false
 
       ## Recoverable
       t.string   :reset_password_token

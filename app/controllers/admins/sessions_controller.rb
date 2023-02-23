@@ -2,6 +2,7 @@
 
 class Admins::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :check_customer_login
 
   # GET /resource/sign_in
   # def new

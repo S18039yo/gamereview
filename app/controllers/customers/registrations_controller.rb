@@ -4,6 +4,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   
+  # 新規会員登録後マイページへ
   def after_sign_up_path_for(resource)
      customer_path(resource.id)
   end

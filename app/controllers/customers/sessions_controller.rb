@@ -2,6 +2,12 @@
 
 class Customers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :reject_customer, only: [:create]
+  
+  # ログイン後マイページへ
+  def after_sign_in_path_for(resource)
+     customer_path(resource.id)
+  end
   
   protected
 
