@@ -7,18 +7,18 @@
       <% end %>
     </div>
     <!-- ヘッダーメニュー部分 -->
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
       <!-- 会員ログイン時 -->
       <% if customer_signed_in? %>
         <div class="btn-group">
           <%= link_to customer_path(current_customer.id), class:"nav-item btn btn-outline-light" do %>
             <li>マイページ</li>
           <% end %>
-          <%= link_to posts_path, class:"nav-item btn btn-outline-light" do %>
-            <li>投稿一覧</li>
-          <% end %>
           <%= link_to new_post_path, class:"nav-item btn btn-outline-light" do %>
             <li>新規投稿</li>
+          <% end %>
+          <%= link_to posts_path, class:"nav-item btn btn-outline-light" do %>
+            <li>投稿一覧</li>
           <% end %>
           <%= link_to destroy_customer_session_path, method: :delete, class:"nav-item btn btn-outline-light" do %>
             <li>ログアウト</li>

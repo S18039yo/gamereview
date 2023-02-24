@@ -1,32 +1,31 @@
 <div class="container">
-  
-  <% if @genre.errors.any? %>
-    <%= @genre.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @genre.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  
   <div class="row">
-    <span>ジャンル編集</span>
+　  <div class="mx-auto my-4">
+	    <h2 class="border border-dark p-3">ジャンル名編集</h2>
+	  </div>
   </div>
   
-  <div class="row">  
-    <%= form_with model: [:admins, @genre] do |f| %>
-      <table>
-        <td>
-          <%= f.label "ジャンル名" %>
-        </td>
-        <td>
+  <div class="row">
+    <span class="mx-auto border border-dark p-3">
+      <% if @genre.errors.any? %>
+        <%= @genre.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @genre.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      
+      <%= form_with model: [:admins, @genre] do |f| %>
+        <div class="form-group">
+          <%= f.label "ジャンル名" %><br />
           <%= f.text_field :name %>
-        </td>
-      </table>
-      <div class="text-right">
-        <%= f.submit "変更を保存", class: "btn btn-success mr-3" %>
-        <%= link_to "戻る", admins_genres_path, class: "btn btn-primary" %>
-      </div>
-    <% end %>
+        </div>
+        <div>
+          <%= f.submit "変更を保存", class: "btn btn-outline-success btn-block" %>
+          <%= link_to "戻る", admins_genres_path, class: "btn btn-outline-primary btn-block" %>
+        </div>
+      <% end %>
+    </span>
   </div>
 </div>
