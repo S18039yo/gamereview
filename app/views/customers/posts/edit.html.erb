@@ -4,4 +4,47 @@
 	  <h2 class="border border-dark p-3">投稿編集</h2>
 	</div>
   </div>
+  
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <div class="row">
+    <span class="mx-auto border border-dark p-3 w-50">
+      <%= form_with model: @post do |f| %>
+        <div class="form-group">
+          <%= f.label :"ゲームタイトル" %><br />
+          <%= f.text_field :name, class: "form-control", placeholder: "タイトル" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"件名(投稿一覧で表示されます)" %><br />
+          <%= f.text_field :subject, class: "form-control", placeholder: "件名" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"レビュー文" %><br />
+          <%= f.text_field :introduction, class: "form-control", placeholder: "ここに文章を入力" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"ゲームジャンル" %><br />
+          <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "--選択してください--"} %>
+        </div>
+        <div class="form-group">
+          <%= f.label "投稿ステータス" %><br />
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_active, "公開", value: true %>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active, "非公開", value: false %>
+        </div>
+        <div>
+          <%= f.submit "編集内容を保存する", class: "btn btn-outline-success btn-block" %>
+          <%= link_to "戻る", post_path(@post.id), class: "btn btn-outline-primary btn-block" %>
+        </div>
+      <% end %>
+    </span>
+  </div>
 </div>

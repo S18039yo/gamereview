@@ -2,7 +2,6 @@ class Customers::PostsController < ApplicationController
   
   def index
     @posts = Post.all
-    @genres = Genre.all
   end
   
   def new
@@ -23,9 +22,12 @@ class Customers::PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @customer = @post.customer
+    @customer = Customer.find(params[:id])
   end
   
   def edit
+    @post = Post.find(params[:id])
     @genre = Genre.find(params[:id])
     @genres = Genre.all
   end
@@ -41,6 +43,11 @@ class Customers::PostsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:notice] = "投稿を削除しました"
+      redirect_to customer_path(current_customer)
+    end
   end
   
   private

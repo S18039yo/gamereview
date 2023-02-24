@@ -10,6 +10,7 @@
       <div class="mx-auto text-center">
         <h3 class="border border-dark p-3">会員情報</h3>
       </div>
+      
       <table class="table table-bordered my-4">
         <tr>
           <th>氏名</th>
@@ -28,23 +29,53 @@
           <td><%= @customer.email %></td>
         </tr>
       </table>
-      <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-outline-dark btn-lg btn-block" %>
+      
+      <div>
+        <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-outline-dark btn-lg btn-block" %>
+      </div>
     </div>
     
     <div class="col-8">
-      <div class="m-auto text-center">
-    　   <h3 class="border border-dark p-3">投稿一覧</h3>
-  　   </div>
-  　  
-  　   <div>
-  　     <% @posts.each do |post|%>
-  　       <%= link_to post_path(post.id) do %>
-  　         <%= post.name %>
-  　       <% end %>
-  　       <%= post.subject %>
-  　       <%= post.genre.name %>
-  　     <% end %>
-  　   </div>
-    </div>
+      <div class="mx-auto text-center">
+	      <h3 class="border border-dark p-3">投稿一覧</h3>
+	    </div>
+	    
+	    <div class="mx-auto my-4">
+	      <table class="table">
+	        <thead class="bg-light">
+            <th class="text-center">ゲームタイトル</th>
+            <th class="text-center">件名</th>
+            <th class="text-center">ゲームジャンル</th>
+            <th class="text-center">投稿ステータス</th>
+          </thead>
+          <tbody class="p-auto">
+            <tr>
+  	          <% @posts.each do |post| %>
+  	            <tr>
+                  <td class="text-center">
+                    <%= link_to post_path(post.id) do %>
+                      <%= post.name %>
+                    <% end %>
+                  </td>
+                  <td class="text-center">
+                    <%= post.subject %>
+                  </td>
+                  <td class="text-center">
+                    <%= post.genre.name %>
+                  </td>
+                  <td class="text-center">
+                    <% if post.is_active == true %>
+                      <p class="font-weight-bold text-success">公開中</p>
+                    <% else %>
+                      <p class="font-weight-bold text-black-50">非公開</p>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+	    </div>
+	  </div>
   </div>
 </div>

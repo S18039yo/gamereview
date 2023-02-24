@@ -4,4 +4,44 @@
 	  <h2 class="border border-dark p-3">投稿詳細</h2>
 	</div>
   </div>
+  
+  <div class="row">
+    <span class="mx-auto border border-dark p-3 w-50">
+      <div>
+        <h5>
+          <strong><ゲームタイトル></strong>
+        </h5>
+        <h3>
+          <%= @post.name %>
+        </h3>
+      </div>
+      <div class="mt-4">
+        <p>投稿者：<%= @customer.user_name %></p>
+      </div>
+      <div>
+        <p>件名：<%= @post.subject %></p>
+      </div>
+      <div>
+        <p>ジャンル：<%= @post.genre.name %></p>
+      </div>
+      <div>
+        <h5>[レビュー文]</h5>
+        <p>
+          <%= @post.introduction %>
+        </p>
+      </div>
+      <div class="row p-auto">
+        <div class="col">
+        <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-outline-success btn-lg btn-block" %>
+        </div>
+        <div class="col">
+        <%= link_to "一覧に戻る", customer_path(current_customer), class: "btn btn-outline-primary btn-lg btn-block" %>
+        </div>
+    　</div>
+    　<div>
+        <%= link_to "投稿を削除する", post_path(@post.id), class: "btn btn-outline-danger btn-block btn-sm", method: :delete, "data-confirm" => "本当によろしいですか？" %>
+      </div>
+    </span>
+  </div>
+  
 </div>

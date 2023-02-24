@@ -9,5 +9,5 @@
 # 管理者アカウントの設定
 Admin.create!(
    email: 'admin@admin',
-   password: 'testtest'
+   password: 'testpass'
 )
