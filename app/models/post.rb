@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
 
-  belongs_to :customer
+  belongs_to :customer, optional: true
   belongs_to :genre
   
   validates :name,         presence: true

@@ -2,6 +2,8 @@ class Customers::CustomerController < ApplicationController
   
   def show
     @customer = current_customer
+    @posts = Post.all
+    @genres = Genre.all
   end
   
   def edit
