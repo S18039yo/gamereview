@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto my-4">
-      <h2>新規会員登録</h2>
+      <h2 class="border border-dark p-3">新規会員登録</h2>
     </div>
   </div>
 
@@ -62,7 +62,9 @@
         </div>
       <% end %>
       <div class="text-center my-3">
-        <%= render "customers/shared/links" %>
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "会員登録済の方はこちら", new_session_path(resource_name) %><br />
+        <% end %>
       </div>
     </div>
   </div>

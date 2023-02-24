@@ -1,59 +1,58 @@
-<div class="container-fluid border-bottom">
-  <!-- ヘッダーロゴ部分 -->
-  <div class="">
-    <%= link_to root_path do %>
-      <h1>Game Value</h1>
-    <% end %>
-  </div>
-  
-  <!-- ヘッダーメニュー部分 -->
-  <nav class="navbar navbar-expand-lg mt-1">
-    <ul class="navbar-nav row justify-content-center">
+<div class="container-fluid">
+  <nav class="navbar navbar-dark bg-dark">
+    <!-- ヘッダーロゴ部分 -->
+    <div class="navbar-brand">
+      <%= link_to root_path do %>
+        <h1 class="text-light">Game Value</h1>
+      <% end %>
+    </div>
+    <!-- ヘッダーメニュー部分 -->
+    <ul class="navbar-nav mr-auto">
       <!-- 会員ログイン時 -->
       <% if customer_signed_in? %>
-        <div class="customer-menu btn-group" role="group" aira-label="Header menu">
-          <%= link_to customer_path(current_customer.id), class:"nav-item btn" do %>
+        <div class="btn-group">
+          <%= link_to customer_path(current_customer.id), class:"nav-item btn btn-outline-light" do %>
             <li>マイページ</li>
           <% end %>
-          <%= link_to posts_path, class:"nav-item btn" do %>
+          <%= link_to posts_path, class:"nav-item btn btn-outline-light" do %>
             <li>投稿一覧</li>
           <% end %>
-          <%= link_to new_post_path, class:"nav-item btn" do %>
+          <%= link_to new_post_path, class:"nav-item btn btn-outline-light" do %>
             <li>新規投稿</li>
           <% end %>
-          <%= link_to destroy_customer_session_path, method: :delete, class:"nav-item btn" do %>
+          <%= link_to destroy_customer_session_path, method: :delete, class:"nav-item btn btn-outline-light" do %>
             <li>ログアウト</li>
           <% end %>
         </div>
       <!-- 管理者ログイン時 -->
       <% elsif admin_signed_in? %>
-        <div class="admin-menu btn-group" role="group" aira-label="Header menu">
-          <%= link_to admins_posts_path, class:"nav-item text-white btn btn-secondary" do %>
+        <div class="btn-group">
+          <%= link_to admins_posts_path, class:"nav-item btn btn-outline-light" do %>
             <li>投稿一覧</li>
           <% end %>
-          <%= link_to admins_customer_index_path, class:"nav-item text-white btn btn-secondary" do %>
+          <%= link_to admins_customer_index_path, class:"nav-item btn btn-outline-light" do %>
             <li>会員一覧</li>
           <% end %>
-          <%= link_to admins_genres_path, class:"nav-item text-white btn btn-secondary" do %>
+          <%= link_to admins_genres_path, class:"nav-item btn btn-outline-light" do %>
             <li>ジャンル一覧</li>
           <% end %>
-          <%= link_to destroy_admin_session_path, method: :delete, class:"nav-item text-white btn btn-secondary" do %>
+          <%= link_to destroy_admin_session_path, method: :delete, class:"nav-item btn btn-outline-light" do %>
             <li>ログアウト</li>
           <% end %>
         </div>
     　<!-- 非ログイン時 -->
       <% else %>
-        <div class="public-menu btn-group" role="group" aira-label="Header menu">
-          <%= link_to about_path, class:"nav-item btn" do %>
+        <div class="btn-group">
+          <%= link_to about_path, class:"nav-item btn btn-outline-light" do %>
             <li>About</li>
           <% end %>
-          <%= link_to posts_path, class:"nav-item btn" do %>
+          <%= link_to posts_path, class:"nav-item btn btn-outline-light" do %>
             <li>投稿一覧</li>
           <% end %>
-          <%= link_to new_customer_registration_path, method: :get, class:"nav-item btn" do %>
+          <%= link_to new_customer_registration_path, method: :get, class:"nav-item btn btn-outline-light" do %>
             <li>新規登録</li>
           <% end %>
-          <%= link_to customer_session_path,method: :get, class:"nav-item btn" do %>
+          <%= link_to customer_session_path,method: :get, class:"nav-item btn btn-outline-light" do %>
             <li>ログイン</li>
           <% end %>
         </div>
