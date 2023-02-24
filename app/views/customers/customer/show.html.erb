@@ -29,7 +29,7 @@
             <td><%= @customer.email %></td>
           </tr>
         </table>
-        <%= link_to "編集する", edit_customer_path, class: "btn btn-outline-dark btn-lg btn-block" %>
+        <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-outline-dark btn-lg btn-block" %>
       </div>
     </div>
     <div class="col-8">
