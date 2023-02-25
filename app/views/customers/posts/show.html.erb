@@ -30,6 +30,13 @@
           <%= @post.introduction %>
         </p>
       </div>
+      <div>
+        <% if @post.bookmarked_by?(current_customer) %>
+          <td><%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete %></td>
+        <% else %>
+          <td><%= link_to "ブックマークする", post_bookmarks_path(@post), method: :post %></td>
+        <% end %>
+      </div>
       <div class="mt-5">
         <%= link_to "一覧に戻る", customer_path(current_customer), class: "btn btn-outline-primary btn-lg btn-block" %>
       </div>

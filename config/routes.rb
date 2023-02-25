@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   scope module: :customers do
     root to: 'homes#top'
     get "/about" => "homes#about"
-    resources :posts,    only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :posts,    only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resource :bookmarks, only: [:create, :destroy]
+    end
     resources :customer, only: [:show, :edit, :update] do
       collection do
         get 'unsubscribe'
