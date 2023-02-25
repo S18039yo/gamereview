@@ -1,4 +1,5 @@
 class Customers::PostsController < ApplicationController
+  before_action :authenticate_customer!
   
   def index
     @posts = Post.all
@@ -12,6 +13,7 @@ class Customers::PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
+    @post.customer = current_customer
     if @post.save
       redirect_to post_path(@post.id)
     else
@@ -23,7 +25,6 @@ class Customers::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @customer = @post.customer
-    @customer = Customer.find(params[:id])
   end
   
   def edit

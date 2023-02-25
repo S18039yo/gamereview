@@ -18,7 +18,7 @@
           <% @posts.each do |post| %>
             <tr>
               <td class="text-center">
-                <%= post.name %>
+                <%= post.customer.user_name %>
               </td>
               <td class="text-center">
                 <%= link_to post_path(post.id) do %>

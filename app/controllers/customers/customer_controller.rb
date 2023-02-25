@@ -1,4 +1,5 @@
 class Customers::CustomerController < ApplicationController
+  before_action :authenticate_customer!
   
   def show
     @customer = Customer.find(params[:id])
@@ -11,6 +12,11 @@ class Customers::CustomerController < ApplicationController
   
   def update
     @customer = current_customer
+    if @customer.update(customer_params)
+      redirect_to customer_path(@customer.id)
+    else
+      render :edit
+    end
   end
   
   def unsubscribe
