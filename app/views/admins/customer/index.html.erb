@@ -4,4 +4,41 @@
 	  <h2 class="border border-dark p-3">管理者側会員一覧</h2>
 	</div>
   </div>
+  
+  <div class="mx-auto my-4">
+    <table class="table">
+      <thead class="bg-light">
+        <th class="text-center">会員ID</th>
+        <th class="text-center">名前</th>
+        <th class="text-center">ニックネーム</th>
+        <th class="text-center">会員ステータス</th>
+      </thead>
+      <tbody class="p-auto">
+        <tr>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td class="text-center">
+                <%= customer.id %>
+              </td>
+              <td class="text-center">
+                <%= link_to admins_customer_path(customer.id) do %>
+                  <%= customer.last_name %><%= customer.first_name %>
+                <% end %>
+              </td>
+              <td class="text-center">
+                <%= customer.user_name %>
+              </td>
+              <td class="text-center">
+                <% if customer.is_deleted == false %>
+                  <p class="font-weight-bold text-success">有効</p>
+                <% else %>
+                  <p class="font-weight-bold text-danger">退会済</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
