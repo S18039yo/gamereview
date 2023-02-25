@@ -2,7 +2,7 @@ class Customers::PostsController < ApplicationController
   before_action :authenticate_customer!
   
   def index
-    @posts = Post.all
+    @posts = Post.all.where(is_active: "true")
   end
   
   def new
@@ -30,7 +30,6 @@ class Customers::PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
-    @genre = Genre.find(params[:id])
     @genres = Genre.all
   end
   
@@ -38,7 +37,7 @@ class Customers::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @genres = Genre.all
     if @post.update(post_params)
-      redirect_to post_path(@post.id)
+      redirect_to customer_path(current_customer)
     else
       @genres = Genre.all
       render :edit

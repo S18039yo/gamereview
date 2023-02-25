@@ -30,17 +30,17 @@
           <%= @post.introduction %>
         </p>
       </div>
-      <div class="row p-auto">
-        <div class="col">
-        <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-outline-success btn-lg btn-block" %>
-        </div>
-        <div class="col">
+      <div class="mt-5">
         <%= link_to "一覧に戻る", customer_path(current_customer), class: "btn btn-outline-primary btn-lg btn-block" %>
-        </div>
-    　</div>
-    　<div>
-        <%= link_to "投稿を削除する", post_path(@post.id), class: "btn btn-outline-danger btn-block btn-sm", method: :delete, "data-confirm" => "本当によろしいですか？" %>
       </div>
+      <% if @customer.id != current_customer.id %>
+        <div></div>
+      <% else %>
+        <div class="mt-4">
+          <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
+          <%= link_to "投稿を削除する", post_path(@post.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "本当によろしいですか？" %>
+        </div>
+      <% end %>
     </span>
   </div>
   

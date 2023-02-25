@@ -12,7 +12,6 @@ class Admins::PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
-    @genre = Genre.find(params[:id])
     @genres = Genre.all
   end
   

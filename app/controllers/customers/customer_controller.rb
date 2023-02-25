@@ -1,6 +1,7 @@
 class Customers::CustomerController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_guest_customer, only: [:edit]
+  before_action :is_matching_login_customer, only: [:edit, :update]
   
   def show
     @customer = Customer.find(params[:id])
@@ -38,6 +39,15 @@ class Customers::CustomerController < ApplicationController
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :user_name, :email)
   end
   
+  # アクセス制限
+  def is_matching_login_customer
+    customer_id = params[:id].to_i
+    unless customer_id == current_customer.id
+      redirect_to customer_path(current_customer)
+    end
+  end
+  
+  # ゲストアカウントの制限
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.last_name == "閲覧"
