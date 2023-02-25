@@ -1,5 +1,6 @@
 class Customers::CustomerController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_guest_customer, only: [:edit]
   
   def show
     @customer = Customer.find(params[:id])
@@ -36,5 +37,12 @@ class Customers::CustomerController < ApplicationController
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :user_name, :email)
   end
+  
+  def ensure_guest_customer
+    @customer = Customer.find(params[:id])
+    if @customer.last_name == "閲覧"
+      redirect_to customer_path(current_customer)
+    end
+  end  
   
 end

@@ -40,8 +40,12 @@
           <%= f.radio_button :is_active, false %>
           <%= f.label :is_active, "非公開", value: false %>
         </div>
-        <div>
-          <%= f.submit "投稿する", class: "btn btn-outline-success btn-block" %>
+        <% if @customer.last_name != "閲覧" %>
+          <div>
+            <%= f.submit "投稿する", class: "btn btn-outline-success btn-block" %>
+          </div>
+        <% end %>
+        <div class="mt-3">
           <%= link_to "戻る", customer_path(current_customer), class: "btn btn-outline-primary btn-block" %>
         </div>
       <% end %>

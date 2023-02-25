@@ -6,9 +6,9 @@
   </div>
   
   <div class="row">
-    <!-- div class="row" -->
-      <!-- %= link_to "ゲストログイン", , class: "btn btn-success" % -->
-    <!-- /div -->
+    <div class="col-7 mx-auto mb-3">
+      <%= link_to "ゲストログイン(閲覧用)", customers_guest_sign_in_path, class: "btn btn-outline-dark btn-lg btn-block", method: :post %>
+    </div>
     
     <div class="col-7 mx-auto mb-3">
       <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-dark btn-lg btn-block" %>

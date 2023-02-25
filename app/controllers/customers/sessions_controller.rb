@@ -9,6 +9,14 @@ class Customers::SessionsController < Devise::SessionsController
      customer_path(resource.id)
   end
   
+  # ゲストログイン機能
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to customer_path(customer)
+  end
+  
+  
   protected
 
   def reject_customer

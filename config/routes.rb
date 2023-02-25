@@ -32,4 +32,9 @@ Rails.application.routes.draw do
     patch 'customers/:id' => 'customers#update'
   end
   
+  # ゲストログイン機能
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
+  end
+  
 end

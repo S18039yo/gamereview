@@ -6,6 +6,7 @@ class Customers::PostsController < ApplicationController
   end
   
   def new
+    @customer = current_customer
     @post = Post.new
     @genres = Genre.all
     @post.is_active = true

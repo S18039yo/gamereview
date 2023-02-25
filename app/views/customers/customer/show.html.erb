@@ -30,9 +30,11 @@
         </tr>
       </table>
       
-      <div>
-        <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-outline-dark btn-lg btn-block" %>
-      </div>
+      <% if @customer.last_name != "閲覧" %>
+        <div>
+          <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-outline-dark btn-lg btn-block" %>
+        </div>
+      <% end %>
     </div>
     
     <div class="col-8">

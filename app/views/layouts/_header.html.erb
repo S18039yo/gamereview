@@ -46,8 +46,8 @@
           <%= link_to about_path, class:"nav-item btn btn-outline-light" do %>
             <li>About</li>
           <% end %>
-          <%= link_to posts_path, class:"nav-item btn btn-outline-light" do %>
-            <li>投稿一覧</li>
+          <%= link_to customers_guest_sign_in_path, class:"nav-item btn btn-outline-light", method: :post do %>
+            <li>ゲストログイン</li>
           <% end %>
           <%= link_to new_customer_registration_path, method: :get, class:"nav-item btn btn-outline-light" do %>
             <li>新規登録</li>
