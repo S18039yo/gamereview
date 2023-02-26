@@ -12,6 +12,7 @@
         <th class="text-center">ゲームタイトル</th>
         <th class="text-center">件名</th>
         <th class="text-center">ゲームジャンル</th>
+        <th class="text-center">ステータス</th>
       </thead>
       <tbody class="p-auto">
         <tr>
@@ -30,6 +31,13 @@
               </td>
               <td class="text-center">
                 <%= post.genre.name %>
+              </td>
+              <td class="text-center">
+                <% if post.is_active == true %>
+                  <p class="font-weight-bold text-success">公開中</p>
+                <% else %>
+                  <p class="font-weight-bold text-black-50">非公開</p>
+                <% end %>
               </td>
             </tr>
           <% end %>

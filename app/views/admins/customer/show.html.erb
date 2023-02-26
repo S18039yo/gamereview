@@ -55,8 +55,7 @@
 	      <thead class="bg-light">
             <th class="text-center">ゲームタイトル</th>
             <th class="text-center">件名</th>
-            <th class="text-center">ゲームジャンル</th>
-            <th class="text-center">投稿ステータス</th>
+            <th class="text-center">ステータス</th>
           </thead>
       　　<tbody class="p-auto">
         　　<tr>
@@ -70,10 +69,7 @@
               　　<td class="text-center">
                 　　<%= post.subject %>
               　　</td>
-              　　<td class="text-center">
-                　　<%= post.genre.name %>
-              　　</td>
-              　　<td class="text-center">
+              　　<td class="text-center p-0">
                 　　<% if post.is_active == true %>
                   　　<p class="font-weight-bold text-success">公開中</p>
                 　　<% else %>
