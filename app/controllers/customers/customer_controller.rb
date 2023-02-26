@@ -6,6 +6,7 @@ class Customers::CustomerController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
+    @bookmarks = @customer.bookmarks
   end
   
   def edit
