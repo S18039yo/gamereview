@@ -22,8 +22,12 @@ Rails.application.routes.draw do
   scope module: :customers do
     root to: 'homes#top'
     get "/about" => "homes#about"
+    # 検索機能
+    get "search" => "searches#search"
     resources :posts,           only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      # ブックマーク機能
       resource  :bookmarks,     only: [:create, :destroy]
+      # コメント機能
       resources :post_comments, only: [:create, :destroy]
     end
     resources :customer, only: [:show, :edit, :update] do

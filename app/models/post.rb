@@ -16,4 +16,15 @@ class Post < ApplicationRecord
     bookmarks.where(customer_id: customer).exists?
   end
   
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("name LIKE?","#{word}")
+    elsif search == "partial_match"
+      @post = Post.where("name LIKE?","%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
+  
 end

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+　  <div class="mx-auto my-4">
+	  <h2 class="border border-dark p-3">検索結果</h2>
+	</div>
+  </div>
+  
+  <div class="mx-auto my-4">
+    <table class="table">
+      <thead class="bg-light">
+        <th class="text-center">投稿者</th>
+        <th class="text-center">ゲームタイトル</th>
+        <th class="text-center">件名</th>
+        <th class="text-center">ゲームジャンル</th>
+      </thead>
+      <tbody class="p-auto">
+        <tr>
+          <% @posts.each do |post| %>
+            <tr>
+              <td class="text-center">
+                <%= post.customer.user_name %>
+              </td>
+              <td class="text-center">
+                <%= link_to post_path(post.id) do %>
+                  <%= post.name %>
+                <% end %>
+              </td>
+              <td class="text-center">
+                <%= post.subject %>
+              </td>
+              <td class="text-center">
+                <%= post.genre.name %>
+              </td>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
