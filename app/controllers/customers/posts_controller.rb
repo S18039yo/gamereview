@@ -19,6 +19,7 @@ class Customers::PostsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       @genres = Genre.all
+      @customer = current_customer
       render :new
     end
   end
