@@ -2,10 +2,11 @@ class Post < ApplicationRecord
 
   belongs_to :customer
   belongs_to :genre
-  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarks,     dependent: :destroy
+  has_many :post_comments, dependent: :destroy
   
-  validates :customer_id,         presence: true
-  validates :genre_id,         presence: true
+  validates :customer_id,  presence: true
+  validates :genre_id,     presence: true
   validates :name,         presence: true
   validates :subject,      presence: true
   validates :introduction, presence: true

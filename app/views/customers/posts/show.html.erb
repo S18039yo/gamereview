@@ -1,62 +1,94 @@
 <div class="container">
   <div class="row">
-　  <div class="mx-auto my-4">
-	  <h2 class="border border-dark p-3">投稿詳細</h2>
-	</div>
+    <div class="mx-auto my-4">
+	    <h2 class="border border-dark p-3">投稿詳細</h2>
+	  </div>
   </div>
   
   <div class="row">
-    <span class="mx-auto border border-dark p-3 w-50">
-      <div>
-        <h5>
-          <strong><ゲームタイトル></strong>
-        </h5>
-        <h3>
-          <%= @post.name %>
-        </h3>
+    <div class="col-8">
+      <div class="row">
+        <span class="mx-auto border border-dark p-3 w-100">
+          <div>
+            <h5>
+              <strong><ゲームタイトル></strong>
+            </h5>
+            <h3>
+              <%= @post.name %>
+            </h3>
+          </div>
+          <div class="mt-4">
+            <p>投稿者：<%= @customer.user_name %></p>
+          </div>
+          <div>
+            <p>件名：<%= @post.subject %></p>
+          </div>
+          <div>
+            <p>ジャンル：<%= @post.genre.name %></p>
+          </div>
+          <div>
+            <h5>[レビュー文]</h5>
+            <p>
+              <%= @post.introduction %>
+            </p>
+          </div>
+          <% if @customers.last_name != "閲覧" %>
+            <div class="mt-3">
+              <% if @post.bookmarked_by?(current_customer) %>
+                <td>
+                  <%= link_to post_bookmarks_path(@post), class: "btn btn-outline-dark btn-sm", method: :delete do %>
+                    <i class="fa-regular fa-bookmark"></i>ブックマークを外す
+                  <% end %>
+                </td>
+              <% else %>
+                <td>
+                  <%= link_to post_bookmarks_path(@post), class: "btn btn-outline-dark btn-sm", method: :post do %>
+                    <i class="fa-solid fa-bookmark"></i>ブックマークする
+                  <% end %>
+                </td>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="mt-4">
+            <%= link_to "一覧に戻る", customer_path(current_customer), class: "btn btn-outline-primary btn-lg btn-block" %>
+          </div>
+          <% if @customer.id != current_customer.id %>
+            <div></div>
+          <% else %>
+            <div class="mt-4">
+              <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
+              <%= link_to "投稿を削除する", post_path(@post.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "本当によろしいですか？" %>
+            </div>
+          <% end %>
+        </span>
       </div>
-      <div class="mt-4">
-        <p>投稿者：<%= @customer.user_name %></p>
-      </div>
-      <div>
-        <p>件名：<%= @post.subject %></p>
-      </div>
-      <div>
-        <p>ジャンル：<%= @post.genre.name %></p>
-      </div>
-      <div>
-        <h5>[レビュー文]</h5>
-        <p>
-          <%= @post.introduction %>
-        </p>
-      </div>
-      <div class="mt-3">
-        <% if @post.bookmarked_by?(current_customer) %>
-          <td>
-            <%= link_to post_bookmarks_path(@post), class: "btn btn-outline-dark btn-sm", method: :delete do %>
-              <i class="fa-regular fa-bookmark"></i>ブックマークを外す
+    </div>
+    
+    <div class="col-4">
+      <div class="row">
+        <span class="mx-auto border border-dark p-3">
+          <p>コメント件数：<%= @post.post_comments.count %></p>
+          <% @post.post_comments.each do |post_comment| %>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            <%= post_comment.customer.user_name %><br />
+            <%= post_comment.comment %><br />
+            <% if post_comment.customer == current_customer %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), class: "btn btn-outline-danger btn-sm", method: :delete, "data-confirm" => "コメントを削除しますか？" %>
             <% end %>
-          </td>
-        <% else %>
-          <td>
-            <%= link_to post_bookmarks_path(@post), class: "btn btn-outline-dark btn-sm", method: :post do %>
-              <i class="fa-solid fa-bookmark"></i>ブックマークする
-            <% end %>
-          </td>
-        <% end %>
+          <% end %>
+        </span>
       </div>
-      <div class="mt-4">
-        <%= link_to "一覧に戻る", customer_path(current_customer), class: "btn btn-outline-primary btn-lg btn-block" %>
-      </div>
-      <% if @customer.id != current_customer.id %>
-        <div></div>
-      <% else %>
-        <div class="mt-4">
-          <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
-          <%= link_to "投稿を削除する", post_path(@post.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "本当によろしいですか？" %>
+      
+      <% if @customers.last_name != "閲覧" %>
+        <div class="row">
+          <span class="mx-auto p-3">
+          <%= form_with model: [@post, @post_comment] do |f| %>
+            <%= f.text_area :comment, rows: '3', placeholder: "コメントを入力" %>
+            <%= f.submit "送信する", class: "btn btn-outline-success btn-block" %>
+          <% end %>
+          </span>
         </div>
       <% end %>
-    </span>
+    </div>
   </div>
-  
 </div>

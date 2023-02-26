@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   
   has_many :posts
   has_many :bookmarks
+  has_many :post_comments
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

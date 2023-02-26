@@ -24,8 +24,12 @@ class Customers::PostsController < ApplicationController
   end
   
   def show
+    # ゲストログイン機能制限
+    # @customerがあるため@customersとしています
+    @customers = current_customer
     @post = Post.find(params[:id])
     @customer = @post.customer
+    @post_comment = PostComment.new
   end
   
   def edit
